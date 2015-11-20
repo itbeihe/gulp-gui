@@ -3,7 +3,7 @@ var readline = require('readline');
 var projectPath = "/var/www/myweb/gulp_auto_build_demo";
 var $ = require("jquery");
 var cp = require('child_process');
-var help = require('./help.js');
+var help = require('./js/help');
 var events = require('events');
 var consoleEmitter = new events.EventEmitter();
 
