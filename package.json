@@ -1,0 +1,21 @@
+{
+  "name": "gulp-gui",
+  "version": "0.0.1",
+  "description": "a gulp gui use node-webkit",
+  "main": "index.html",
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itbeihe/gulp-gui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itbeihe/gulp-gui/issues"
+  },
+  "homepage": "https://github.com/itbeihe/gulp-gui#readme"
+}

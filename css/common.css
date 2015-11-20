@@ -1,0 +1,15 @@
+#addFileDialog{
+    border:1px solid #ddd;
+}
+#projectListBox{
+    float:left;
+    border:1px solid #ddd;
+}
+#gulpTaskBox{
+    float:left;
+    border:1px solid #ddd;
+}
+#gulpInfoBox{
+    overflow: hidden;
+    border:1px solid #ddd;
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>gulp-gui</title>
+    <link rel="stylesheet" href="css/pure.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+</head>
+<body>
+<div id="addFileDialog">
+    <div>
+        <lable for="projectNameInput">项目名称</lable>
+        <input type="text" name="project-name-input" id="projectNameInput"/>
+    </div>
+    <div>
+        <lable for="gulpfileInput">gulpfile地址</lable>
+        <input type="file" name="gulpfile-input" id="gulpfileInput"/>
+    </div>
+    <div>
+        <input id="addProjectInput" type="button" value="添加" />
+        <input type="button" value="取消" />
+    </div>
+</div>
+<div>
+    <div id="projectListBox">
+        <ol id="projectList">
+            <li data="/var/www/myweb/gulp_auto_build_demo">gulp_auto_build_demo</li>
+        </ol>
+        <a href="" id="add-project">增加gulpfile</a>
+    </div>
+    <div id="gulpTaskBox">
+        test
+    </div>
+    <div id="gulpInfoBox">
+
+    </div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
