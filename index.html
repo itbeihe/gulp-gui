@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>gulp-gui</title>
-    <link rel="stylesheet" href="css/pure.css"/>
+    <link rel="stylesheet" href="metro/css/metro.css"/>
     <link rel="stylesheet" href="css/common.css"/>
 </head>
-<body>
-<div id="addFileDialog">
+<body class="bg-grayDarker">
+<div id="addFileDialog" style="display: none;">
     <div>
         <lable for="projectNameInput">项目名称</lable>
         <input type="text" name="project-name-input" id="projectNameInput"/>
@@ -15,26 +15,65 @@
     <div>
         <lable for="gulpfileInput">gulpfile地址</lable>
         <input type="file" name="gulpfile-input" id="gulpfileInput"/>
+        <span id="filePathText"></span>
     </div>
     <div>
         <input id="addProjectInput" type="button" value="添加" />
         <input type="button" value="取消" />
     </div>
 </div>
-<div>
-    <div id="projectListBox">
-        <ol id="projectList">
-            <li data="/var/www/myweb/gulp_auto_build_demo">gulp_auto_build_demo</li>
-        </ol>
-        <a href="" id="add-project">增加gulpfile</a>
-    </div>
-    <div id="gulpTaskBox">
-        test
-    </div>
-    <div id="gulpInfoBox">
 
+<div class="container page-content">
+    <div class="flex-grid">
+        <div class="row cells12">
+            <div class="cell colspan3">
+                <h2>gulp测试</h2>
+                <div id="projectListBox">
+                    <div class="clear-float">
+                        <ul class="sidebar2 dark" id="projectList">
+                            <li class="active"><a href="#"><span class="mif-home icon"></span>Dashboard</a></li>
+                            <li class=""><a href="#">Thread item</a></li>
+                            <li><a href="#">Other Item 1</a></li>
+                            <li><a href="#">Other item 2</a></li>
+                            <li><a href="#">Other item 3</a></li>
+                        </ul>
+                    </div>
+                    <div >
+                        <div class="button icon-right">新建项目</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cell colspan3 ">
+                <h2>任务名称</h2>
+                <div id="gulpTaskBox">
+                    <div class="clear-float">
+                        <ul id="gulpTaskList" class="sidebar2 dark">
+                            <li data="/var/www/myweb/gulp_auto_build_demo">
+                                <a href="">gulp_auto_build_demo</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="cell colspan6 ">
+                <h2>&nbsp;</h2>
+                <div id="gulpInfoBox">
+                    <div id="gulpInfo" class="bg-gray" >
+                         123
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
+
+
+
+
+<script src="js/jquery-2.1.4.js"></script>
+<script src="metro/js/metro.js"></script>
 <script src="js/index.js"></script>
 </body>
 </html>

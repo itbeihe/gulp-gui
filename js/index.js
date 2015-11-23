@@ -1,14 +1,25 @@
 var filePath = "/var/www/myweb/gulp_auto_build_demo/gulpfile.js";
 var readline = require('readline');
 var projectPath = "/var/www/myweb/gulp_auto_build_demo";
-var $ = require("jquery");
 var cp = require('child_process');
 var help = require('./js/help');
 var events = require('events');
 var consoleEmitter = new events.EventEmitter();
 
+var chooser = document.querySelector('#gulpfileInput');
+
+chooser.addEventListener("change", function (evt) {
+    apendText(this.value);
+}, false);
+
+function apendText(text) {
+    console.log(text);
+    $('#filePathText').html(text);
+}
+
+
 consoleEmitter.addListener('CONSOLE_ADD_ROW',function(data){
-    $("#gulpInfoBox").append('<div>'+data+'</div>');
+    $("#gulpInfo").append('<div>'+data+'</div>');
 });
 
 function ab2str(buf) {
@@ -89,13 +100,13 @@ var getTasks = function(projectPath){
 
 function buildTaskTree(){
     getTasks(projectPath).then(function(tasks){
-        var tasksHtml = '<ul>';
+        var tasksHtml = '';
         for(var i=0;i<tasks.length;i++){
-            var taskHtml = '<li data-name="'+tasks[i]+'">'+tasks[i]+'</li>';
+            var taskHtml = '<li><a href="" data-name="'+tasks[i]+'">'+tasks[i]+'</a></li>';
             tasksHtml = tasksHtml+taskHtml;
         }
-        tasksHtml +='</ul>';
-        $('#gulpTaskBox').html(tasksHtml);
+        tasksHtml +='';
+        $('#gulpTaskList').html(tasksHtml);
     },function(){
         console.log(arguments);
     });
@@ -103,16 +114,10 @@ function buildTaskTree(){
 
 buildTaskTree();
 
-$('#gulpTaskBox').on('click','li',function(){
+$('#gulpTaskList').on('click','a',function(ev){
+    ev.preventDefault();
     var taskName = $(this).data('name');
     runGulpTask([taskName],projectPath).then(function(results){
-        //var tasksHtml = '<ul>';
-        //for(var i=0;i<results.length;i++){
-        //    var taskHtml = '<li data-name="'+results[i]+'">'+results[i]+'</li>';
-        //    tasksHtml = tasksHtml+taskHtml;
-        //}
-        //tasksHtml +='</ul>';
-        //$('#gulpInfoBox').html(tasksHtml);
         console.log('end');
     },function(errRes){
 
