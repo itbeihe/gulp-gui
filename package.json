@@ -1,6 +1,6 @@
 {
   "name": "gulp-gui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a gulp gui use node-webkit",
   "main": "index.html",
   "webkit":{
