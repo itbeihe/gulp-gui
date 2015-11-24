@@ -19,4 +19,6 @@
     top:0px;
     left:0px;
     right:0px;
+    overflow-y:auto;
+    line-height: 1.4em;
 }
