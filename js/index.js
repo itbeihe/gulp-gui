@@ -1,5 +1,6 @@
 var util = require('util');
 var cp = require('child_process');
+var cSpawn = require('cross-spawn');
 var pt = require('path');
 var help = require('./js/help');
 var events = require('events');
@@ -7,20 +8,23 @@ var commonEmitter = new events.EventEmitter();
 var nwPath = process.execPath;
 var nwDir = pt.dirname(nwPath);
 var DATA_PATH = pt.join(nwDir,"gulp_gui_conf.json");
-console.log('-------------------');
-console.log(process);
+
+
 var defaultConf = {
     "projects": [],
     "current": ""
 };
-var pro_conf = defaultConf;
-console.log(pro_conf);
-try{
-    pro_conf = help.readJson(DATA_PATH);
-}catch(e){
 
+var pro_conf={};
+try{
+    pro_conf  = help.readJson(DATA_PATH);
+}catch(e){
 }
-console.log(pro_conf);
+
+if(typeof pro_conf["projects"] !='object'){
+    pro_conf["projects"] = [];
+    pro_conf["current"] = "";
+}
 
 function ab2str(buf) {
     return String.fromCharCode.apply(null, buf);
@@ -42,7 +46,7 @@ var projectsCon = {
         }
     },
     getData:function(name){
-        var projects = this.projectData['projects'];
+        var projects = this.projectData['projects']||[];
         var project = help.filterArray(projects,'name',name);
         if(project.length>0){
             return project[0];
@@ -84,8 +88,6 @@ var projectsCon = {
     buildProjectList:function(){
         var projects =this.projectData["projects"]||[];
         var projectsHtml = '';
-        console.log('ooooo');
-        console.log(this.projectData);
         if(projects.length&&projects.length>0){
             for(var i= 0,l=projects.length;i<l;i++){
                 var active = '';
@@ -153,13 +155,15 @@ var tasksCon = {
         var dtd = $.Deferred();
         var tasksList = [];
         var errList = [];
-        var ls = cp.spawn(
+        //var ls = cp.spawn(
+        var ls = cSpawn(
             'gulp',
             ['--tasks-simple'],
             {
+                shell: true,
                 cwd: projectPath,
                 env: process.env
-            });
+            }).on('error', function( err ){ throw err });
         ls.stdout.on('data', function (data) {
             var result  = ab2str(data);
             tasksList.push(result);
@@ -248,7 +252,7 @@ var tasksCon = {
         var dtd = $.Deferred();
         var tasksList = [];
         var errList = [];
-        var ls = cp.spawn(
+        var ls = cSpawn(
             'npm',
             ['install','-d'],
             {
@@ -295,14 +299,14 @@ var tasksCon = {
         var dtd = $.Deferred();
         var tasksList = [];
         var errList = [];
-        var ls = cp.spawn(
+        var ls = cSpawn(
             'gulp',
             task,
             {
                 cwd: projectPath,
                 env: process.env
             });
-        commonEmitter.emit('CONSOLE_RUNING','任务执行中');
+        commonEmitter.emit('CONSOLE_RUNING','');
         help.emitLines(ls.stdout);
         ls.stdout.on('line',function(data){
             commonEmitter.emit('CONSOLE_ADD_ROW',data);

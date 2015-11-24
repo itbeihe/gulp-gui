@@ -7,14 +7,14 @@
     "plugin":true
   },
   "window":{
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "width": 850,
-    "height": 500,
+    "height": 470,
     "min_width": 850,
-    "min_height": 500,
+    "min_height": 470,
     "max_width": 850,
-    "max_height": 500
+    "max_height": 470
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
