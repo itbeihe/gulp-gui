@@ -10,6 +10,12 @@ var nwPath = process.execPath;
 var nwDir = pt.dirname(nwPath);
 var DATA_PATH = pt.join(nwDir,"data.json");
 
+var defaultConf = {
+    "projects": [],
+    "current": ""
+};
+
+
 
 function ab2str(buf) {
     return String.fromCharCode.apply(null, buf);

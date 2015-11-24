@@ -33,12 +33,16 @@ function writeJson(path,object){
     fs.writeFileSync(path,dataString);
 }
 
+function checkFile(){
+
+}
 
 
 module.exports={
     emitLines :emitLines,
     writeJson :  writeJson,
     readJson : readJson,
+    checkFile:checkFile,
     filterArray:function(array,key,value){
         var rArr = [];
         for(var i= 0,len=array.length;i<len;i++){
