@@ -1,0 +1,10 @@
+{
+	"projects": [
+		{
+			"name": "测试",
+			"filePath": "/var/www/myweb/gulp_auto_build_demo/gulpfile.js",
+			"path": "/var/www/myweb/gulp_auto_build_demo"
+		}
+	],
+	"current": "测试"
+}

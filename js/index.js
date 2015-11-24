@@ -6,7 +6,9 @@ var pt = require('path');
 var help = require('./js/help');
 var events = require('events');
 var commonEmitter = new events.EventEmitter();
-var DATA_PATH = "data.json";
+var nwPath = process.execPath;
+var nwDir = pt.dirname(nwPath);
+var DATA_PATH = pt.join(nwDir,"data.json");
 
 
 function ab2str(buf) {
