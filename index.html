@@ -2,61 +2,68 @@
 <html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8">
-    <title>gulp-gui</title>
+    <title>gulp项目执行工具</title>
     <link rel="stylesheet" href="metro/css/metro.css"/>
     <link rel="stylesheet" href="css/common.css"/>
 </head>
 <body class="bg-grayLighter">
-<div id="addFileDialog" style="display: none;">
-    <div>
-        <lable for="projectNameInput">项目名称</lable>
-        <input type="text" name="project-name-input" id="projectNameInput"/>
+<div id="addFileDialog" data-role="dialog" data-close-button="true"  class="padding20">
+    <h1>新增项目</h1>
+    <div class="cell">
+        <label>项目名称</label>
+        <div class="input-control text full-size">
+            <input id="projectNameInput" required type="text">
+        </div>
     </div>
     <div>
-        <lable for="gulpfileInput">gulpfile地址</lable>
-        <input type="file" name="gulpfile-input" id="gulpfileInput"/>
-        <span id="filePathText"></span>
+        <label>gulpfile地址</label>
+        <div class="input-control file full-size" data-role="input">
+            <input id="gulpfileInput"  required type="file" tabindex="-1" style="z-index: 0;">
+            <button class="button" type="button"><span class="mif-folder">+</span></button>
+        </div>
     </div>
     <div>
-        <input id="addProjectInput" type="button" value="添加" />
-        <input type="button" value="取消" />
+        <input id="addProject" type="button" value="添加" />
     </div>
 </div>
 
-<div class="container page-content">
+<div class="warap-box">
     <div class="flex-grid">
         <div class="row cells12">
             <div class="cell colspan3">
-                <h2>gulp测试</h2>
+                <h2>项目列表</h2>
                 <div id="projectListBox">
                     <div class="clear-float">
                         <ul class="sidebar2 dark" id="projectList">
                             <li><a href="#">初始化中</a></li>
                         </ul>
                     </div>
-                    <div >
-                        <div class="button icon-right">新建项目</div>
-                    </div>
                 </div>
-
+                <div >
+                    <div class="button icon-right" id="addProjectBtn">新建项目</div>
+                </div>
             </div>
             <div class="cell colspan3 ">
-                <h2>任务名称</h2>
+                <h2>任务列表</h2>
                 <div id="gulpTaskBox">
                     <div class="clear-float">
                         <ul id="gulpTaskList" class="sidebar2 dark">
-                            <li data="/var/www/myweb/gulp_auto_build_demo">
-                                <a href="">初始化中</a>
+                            <li>
+                                <a href="">无任务</a>
                             </li>
                         </ul>
                     </div>
                 </div>
+                <div class="clear-float">
+                    <button class="button" id="flushTasksBtn">刷新任务</button>
+                    <button class="button right" id="npmInstallBtn">安装依赖</button>
+                </div>
             </div>
             <div class="cell colspan6 ">
-                <h2>控制面板</h2>
+                <h2>日志</h2>
                 <div id="gulpInfoBox">
                     <div id="gulpInfo" class="bg-gray fg-white padding10" >
-                        等待命令
+                        静候您的命令
                     </div>
                 </div>
             </div>

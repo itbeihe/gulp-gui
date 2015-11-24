@@ -29,7 +29,7 @@ function readJson(path,object){
 }
 
 function writeJson(path,object){
-    var dataString = JSON.stringify(object);
+    var dataString = JSON.stringify(object, null, "\t");
     fs.writeFileSync(path,dataString);
 }
 

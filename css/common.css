@@ -1,16 +1,38 @@
+.warap-box{
+    padding:0 10px;
+}
 #projectListBox{
-    height:500px;
+    max-height:360px;
+    overflow-y: auto;
     position: relative;
+}
+#projectList li .del-button{
+    position:absolute;
+    color:#ffffff;
+    right:0;
+    top:-1px;
+    bottom:0;
+    background:#666666;
+    padding:.75rem 1rem .75rem 1rem;
+    cursor: pointer;
+    display: none;
+}
+#projectList li:hover .del-button{
+    display: block;
 }
 
 #gulpTaskBox{
-    height:500px;
+    max-height:360px;
     position: relative;
+    word-break: break-all;
+    overflow-y: auto;
 }
 
 #gulpInfoBox{
-    height:500px;
+    top:1px;
+    height:400px;
     position: relative;
+    margin-left:3px;
 }
 
 #gulpInfo{
@@ -21,4 +43,8 @@
     right:0px;
     overflow-y:auto;
     line-height: 1.4em;
+}
+
+#npmInstallBtn{
+    float:right;
 }
