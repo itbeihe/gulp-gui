@@ -1,5 +1,3 @@
-var filePath = "/var/www/myweb/gulp_auto_build_demo/gulpfile.js";
-var readline = require('readline');
 var util = require('util');
 var cp = require('child_process');
 var pt = require('path');
@@ -8,27 +6,34 @@ var events = require('events');
 var commonEmitter = new events.EventEmitter();
 var nwPath = process.execPath;
 var nwDir = pt.dirname(nwPath);
-var DATA_PATH = pt.join(nwDir,"data.json");
-
+var DATA_PATH = pt.join(nwDir,"gulp_gui_conf.json");
+console.log('-------------------');
+console.log(process);
 var defaultConf = {
     "projects": [],
     "current": ""
 };
+var pro_conf = defaultConf;
+console.log(pro_conf);
+try{
+    pro_conf = help.readJson(DATA_PATH);
+}catch(e){
 
-
+}
+console.log(pro_conf);
 
 function ab2str(buf) {
     return String.fromCharCode.apply(null, buf);
 }
 
 var projectsCon = {
-    projectData:help.readJson(DATA_PATH),
+    projectData:pro_conf,
     currentProject:{},
     openProject:function(index){
         if(typeof index == 'undefined'){
             index = 0;
         }
-        if(this.projectData['projects'][index]){
+        if(this.projectData['projects']&&this.projectData['projects'][index]){
             this.currentProject = this.projectData['projects'][index];
             this.projectData['current'] = this.currentProject['name'];
             $("#projectList li").removeClass('active').eq(index).addClass('active');
@@ -77,9 +82,11 @@ var projectsCon = {
         commonEmitter.emit('ZERO_PROJECT');
     },
     buildProjectList:function(){
-        var projects =this.projectData["projects"];
+        var projects =this.projectData["projects"]||[];
         var projectsHtml = '';
-        if(projects.length>0){
+        console.log('ooooo');
+        console.log(this.projectData);
+        if(projects.length&&projects.length>0){
             for(var i= 0,l=projects.length;i<l;i++){
                 var active = '';
                 if(projects[i]['name'] == this.projectData['current']){

@@ -33,8 +33,13 @@ function writeJson(path,object){
     fs.writeFileSync(path,dataString);
 }
 
-function checkFile(){
-
+function checkFile(path,dc){
+    console.log('-----------');
+    try{
+        var st = fs.statSync(path);
+    }catch(e){
+        console.log(st);
+    }
 }
 
 
